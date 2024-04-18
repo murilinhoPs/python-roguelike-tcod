@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import tcod
 
-from actions import MovementAction, EscAction
-from input_handlers import EventHandler
+from game.actions import MovementAction, EscAction
+from game.input_handlers import EventHandler
 
 
 def main() -> None:
@@ -13,7 +13,7 @@ def main() -> None:
     player_x = int(screen_width / 2)
     player_y = int(screen_height / 2)
     tileset = tcod.tileset.load_tilesheet(
-        "./dejavu10_10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
+        "data/dejavu10_10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
     event_handler = EventHandler()
 

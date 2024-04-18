@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import tcod.event
 
-from actions import Action, MovementAction, EscAction
+from game.actions import Action, MovementAction, EscAction
 
 
 class EventHandler(tcod.event.EventDispatch[Action]):
