@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import tcod
 
-from engine import Engine
+from game.engine import Engine
 from game.entity import Entity
 from game.input_handlers import EventHandler
 
@@ -11,13 +11,14 @@ from game.input_handlers import EventHandler
 def main() -> None:
     screen_width = 80
     screen_height = 50
-    event_handler = EventHandler()
     tileset = tcod.tileset.load_tilesheet(
         "data/dejavu10_10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
     player = Entity(int(screen_width / 2), int(screen_height / 2), "@", (255, 255, 255))
     npc = Entity(int(screen_width / 2 - 5), int(screen_height / 2), "@", (255, 255, 0))
     entities = {npc, player}
+
+    event_handler = EventHandler()
     engine = Engine(entities, event_handler, player)
 
     with tcod.context.new_terminal(

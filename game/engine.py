@@ -29,5 +29,5 @@ class Engine:
         for entity in self.entities:
             console.print(x=entity.x, y=entity.y, string=entity.char, fg=entity.color)
 
-            context.present(console)
-            console.clear()
+        context.present(console)
+        console.clear()
