@@ -7,11 +7,11 @@ from actions import Action, MovementAction, EscAction
 
 class EventHandler(tcod.event.EventDispatch[Action]):
     def ev_quit(self,
-                event: tcod.event.Quit) -> Action | None:  # the same as Optional[Action]from typing import Optional
+                event: tcod.event.Quit) -> Action | None:
         raise SystemExit()
 
     def ev_keydown(self, event: tcod.event.KeyDown) -> Action | None:
-        action: Action | None = None  # define the current action or none if it doesn't exist
+        action: Action | None = None
 
         key = event.sym  # which key was pressed
         if key == tcod.event.K_UP:
