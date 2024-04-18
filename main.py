@@ -3,6 +3,9 @@ from __future__ import annotations
 
 import tcod
 
+from actions import MovementAction, EscAction
+from input_handlers import EventHandler
+
 
 def main() -> None:  # returns nothing, um void
     screen_width = 80
@@ -14,6 +17,8 @@ def main() -> None:  # returns nothing, um void
     tileset = tcod.tileset.load_tilesheet(
         "./dejavu10_10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
+
+    event_handler = EventHandler()
 
     with tcod.context.new_terminal(  # Creates the screen in current context, with (com o new terminal criado...)
             screen_width,
@@ -29,9 +34,16 @@ def main() -> None:  # returns nothing, um void
 
             context.present(root_console)  # Render the console to the window and show it
 
+            root_console.clear()  # clear the previous player position, after movementAction was performed
+
             for event in tcod.event.wait():  # waits until some event is performed
-                print(event)
-                if event.type == "QUIT":  # or if isinstance(event, tcod.event.Quit):
+                action = event_handler.dispatch(event)
+                if action is None:
+                    continue  # continue on the loop until any action was taken
+                if isinstance(action, MovementAction):
+                    player_x += action.dx
+                    player_y += action.dy
+                elif isinstance(action, EscAction):
                     raise SystemExit()
 
 
