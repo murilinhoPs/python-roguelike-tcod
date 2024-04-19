@@ -14,6 +14,7 @@ def main() -> None:
     screen_height = 50
     map_width = 80
     map_height = 45
+    event_handler = EventHandler()
     tileset = tcod.tileset.load_tilesheet(
         "data/dejavu10_10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
@@ -21,7 +22,6 @@ def main() -> None:
     npc = Entity(int(screen_width / 2 - 5), int(screen_height / 2), "@", (255, 255, 0))
     entities = {npc, player}
 
-    event_handler = EventHandler()
     game_map = GameMap(map_width, map_height)
     engine = Engine(entities, event_handler, game_map, player)
 
