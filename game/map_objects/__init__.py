@@ -1,0 +1,1 @@
+"""Map objects namespace package."""

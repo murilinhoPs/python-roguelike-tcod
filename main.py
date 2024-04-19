@@ -6,11 +6,14 @@ import tcod
 from game.engine import Engine
 from game.entity import Entity
 from game.input_handlers import EventHandler
+from game.map_objects.game_map import GameMap
 
 
 def main() -> None:
     screen_width = 80
     screen_height = 50
+    map_width = 80
+    map_height = 45
     tileset = tcod.tileset.load_tilesheet(
         "data/dejavu10_10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
@@ -19,7 +22,8 @@ def main() -> None:
     entities = {npc, player}
 
     event_handler = EventHandler()
-    engine = Engine(entities, event_handler, player)
+    game_map = GameMap(map_width, map_height)
+    engine = Engine(entities, event_handler, game_map, player)
 
     with tcod.context.new_terminal(
             screen_width,
