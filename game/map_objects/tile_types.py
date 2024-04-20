@@ -22,7 +22,7 @@ tile_dt = np.dtype(
 
 
 def new_tile(
-        *,  # that parameter order doesn't matter, is self
+        *,
         walkable: int,
         transparent: int,
         dark: Tuple[int, Tuple[int, int, int], Tuple[int, int, int]]
@@ -31,7 +31,5 @@ def new_tile(
     return np.array((walkable, transparent, dark), dtype=tile_dt)
 
 
-# walkable
 floor = new_tile(walkable=True, transparent=True, dark=(ord(" "), (255, 255, 255), (50, 50, 150)))
-# not walkable
 wall = new_tile(walkable=False, transparent=False, dark=(ord(" "), (255, 255, 255), (0, 0, 100)))
