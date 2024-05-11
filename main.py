@@ -3,10 +3,10 @@ from __future__ import annotations
 
 import tcod
 
+from game.dungeon_objects.procedural_gen import generate_dungeon
 from game.engine import Engine
 from game.entity import Entity
 from game.input_handlers import EventHandler
-from game.map_objects.game_map import GameMap
 
 
 def main() -> None:
@@ -22,7 +22,7 @@ def main() -> None:
     npc = Entity(int(screen_width / 2 - 5), int(screen_height / 2), "@", (255, 255, 0))
     entities = {npc, player}
 
-    game_map = GameMap(map_width, map_height)
+    game_map = generate_dungeon(map_width, map_height)
     engine = Engine(entities, event_handler, game_map, player)
 
     with tcod.context.new_terminal(
